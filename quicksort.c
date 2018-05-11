@@ -9,12 +9,12 @@ void quicksort(int* input,int left,int right)//right是长度-1，从低往高排
 
 	while (i != j)
 	{
-		while ((input[j]>key)&&(j>i))
+		while ((input[j]>=key)&&(j>i))
 		{
 			j--;
 		}
 		input[i] = input[j];
-		while((input[i]<key)&&(i<j))
+		while((input[i]<=key)&&(i<j))
 		{
 			i++;
 		}
@@ -35,10 +35,10 @@ void quicksort(int* input,int left,int right)//从高往低排
         return;
     while(i<j)
     {
-        while((i<j)&&(key>input[j]))
+        while((i<j)&&(key>=input[j]))
             j--;
         input[i] = input[j];
-        while((i<j)&&(key<input[i]))
+        while((i<j)&&(key<=input[i]))
             i++;
         input[j] = input[i];      
     }
