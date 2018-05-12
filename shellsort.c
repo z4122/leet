@@ -16,7 +16,7 @@ void shellsort(int* input, int length)
 		group_num = group_num / 2;
 		for (int i = 0; i < group_num; i++)//分成几个组
 		{
-			for (int j = 0; j < length-group_num; j+=group_num)//对组内变量遍历
+			for (int j = 0; j < length-group_num; j+=group_num)//对组内变量遍历,这是冒泡排序，也可以改成插入排序。基本类似。
 			{
 				for (int k = 0; k < length - group_num-j; k++)
 				{
