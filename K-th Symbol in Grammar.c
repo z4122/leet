@@ -18,3 +18,6 @@ int kthGrammar(int N, int K) {
             K = K - 1;
         return K;
     }
+	
+	
+	//用递归也可以
