@@ -8,8 +8,8 @@
  */
 class Solution {
 public:
-    
-   ListNode* quicksort(ListNode* head, ListNode* end)
+
+ListNode* quicksort(ListNode* head, ListNode* end)
 {
 	if (head == end || head == NULL)
 		return NULL;
@@ -21,10 +21,15 @@ public:
 		{
 			swap(tempnode->val, i->val);
 			tempnode = tempnode->next;
+			if (tempnode->val > temp)
+				swap(tempnode->val, i->val);
 		}
 	}
+
 	if (end->val < temp)
 		swap(tempnode->val, end->val);
+
+
 
 	quicksort(head, tempnode);
 	quicksort(tempnode->next, end);
@@ -32,6 +37,10 @@ public:
 }
 
 ListNode* sortList(ListNode* head) {
+    if(head==NULL)
+        return NULL;
+    if(head->next == NULL)
+        return head;
 	ListNode* end = head;
 	while (end->next != NULL)
 		end = end->next;
