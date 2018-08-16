@@ -1,3 +1,5 @@
+// ConsoleApplication2.cpp: 定义控制台应用程序的入口点。
+//
 
 #include "stdafx.h"
 #include "stdio.h"
@@ -10,14 +12,21 @@
 using namespace std;
 #define Bnd(X,bnd) (sizeof(X)+(bnd)&~(bnd))
 
-struct ListNode
+class ListNode
 {
+public:
+	ListNode(int x) :val(x), next(nullptr) {};
+	ListNode* addNode(ListNode **input, int val);
+	ListNode* cListNode(vector<int>input);
+	void printListNode();
+
+public:
 	int val;
 	ListNode* next;
-	ListNode(int x) :val(x), next(nullptr) {};
+	
 };
 
-ListNode* addNode(ListNode **input,int val)
+ListNode* ListNode::addNode(ListNode **input,int val)
 {
 	if (*input == NULL)
 	{
@@ -34,7 +43,7 @@ ListNode* addNode(ListNode **input,int val)
 	return *input;
 }
 
-ListNode* cListNode(vector<int>input)
+ListNode* ListNode::cListNode(vector<int>input)
 {
 	ListNode* head = new ListNode(input[0]);
 	ListNode* next = head;
@@ -47,11 +56,28 @@ ListNode* cListNode(vector<int>input)
 	return head;
 }
 
+void ListNode::printListNode()
+{
+	ListNode*head = this;
+	vector<int> tmp;
+	while (head != NULL)
+	{
+		tmp.push_back(head->val);
+		head = head->next;
+	}
+	for (auto i = tmp.rbegin(); i != tmp.rend(); i++)
+	{
+		printf("%d\n", *i);
+	}
+
+}
+
 int main()
 {
 	vector<int> tmp = { 1,2,3,4,5 };
-	ListNode *head = cListNode(tmp);
-
+	ListNode *head = NULL;
+	head = head->cListNode(tmp);
+	head->printListNode();
 	system("pause");
 	return 0;
 }
