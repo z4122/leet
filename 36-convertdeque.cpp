@@ -12,6 +12,8 @@ BinaryTreeNode* Convert(BinaryTreeNode* pRootOfTree)
 
 void ConvertNode(BinaryTreeNode* root,BinaryTreeNode ** pLastNodeInList)
 {
+    if(pNode==nullptr)
+        return;
     BinaryTreeNode* current = root;
     if(root->left!=nullptr)
         ConvertNode(root->left,pLastNodeInList);
