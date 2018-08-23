@@ -123,6 +123,20 @@ int BinaryTree :: findMaxDepth(TreeNode* temp)
 	depth--;
 	return maxDepth;
 }
+
+/* 另一种更好的解法
+int BinaryTree :: findMaxDepth(TreeNode* temp)
+{
+	if (temp == NULL)
+		return 0;
+	else
+	{
+		int ldepth = findMaxDepth(temp->left);
+		int rdepth = findMaxDepth(temp->right);
+		return ldepth > rdepth ? ldepth+1 : rdepth+1;
+	}
+}
+*/
 int main()
 {
 	vector<string> a = { "1", "2", "3", "4", "5", "6","7" };
