@@ -1,3 +1,5 @@
+
+
 #include "stdafx.h"
 #include<stdio.h>
 #include"string"
@@ -31,29 +33,16 @@ public:
 	void printInorder();
 	void printPostorder();
 
-	void printIntire();
 
-private:
+	void printIntire();
+	int findMaxDepth(TreeNode* temp);
+
+public:
 	TreeNode * head;
 
 };
 
-void BinaryTree::printIntire()
-{
-	queue<TreeNode*> nodeQueue;
-	TreeNode* tempNode;
-	nodeQueue.push(head);
-	while (nodeQueue.empty() == 0)
-	{
-		tempNode = nodeQueue.front();
-		nodeQueue.pop();
-		printf("%d\t", tempNode->val);
-		if(tempNode->left!=NULL)
-			nodeQueue.push(tempNode->left);
-		if(tempNode->right!=NULL)
-			nodeQueue.push(tempNode->right);
-	}
-}
+
 BinaryTree::BinaryTree(vector<string>input)
 {
 	if (input.size() < 1)
@@ -79,17 +68,67 @@ BinaryTree::BinaryTree(vector<string>input)
 			nodes[i]->right = nodes[i * 2 + 2];
 		i++;
 	}
+	/*//还有一种fangfa
+	TreeNode* node;
+	int index = 0;
+	while(index<input.size())
+	{
+		node = queue.front();
+		queue.pop();
+		queue.push(node[index++]);
+		node.left = queue.back();
+		queue.push(node[index++]);
+		node.right = queue.back();
+	}
 
+	*/
 	head = nodes[0];
 }
 
+/**
+*	@param:层次遍历
 
+*/
+void BinaryTree::printIntire()
+{
+	queue<TreeNode*> nodeQueue;
+	TreeNode* tempNode;
+	nodeQueue.push(head);
+	while (nodeQueue.empty() == 0)
+	{
+		tempNode = nodeQueue.front();
+		nodeQueue.pop();
+		printf("%d\t", tempNode->val);
+		if(tempNode->left!=NULL)
+			nodeQueue.push(tempNode->left);
+		if(tempNode->right!=NULL)
+			nodeQueue.push(tempNode->right);
+	}
+}
+
+/**
+*	@param:寻找最大的深度
+
+*/
+int BinaryTree :: findMaxDepth(TreeNode* temp)
+{
+	static int depth = 0;
+	static int maxDepth = 0;
+	depth++;
+	if(temp->left!=NULL)
+		findMaxDepth(temp->left);
+	if(temp->right!=NULL)
+		findMaxDepth(temp->right);
+	maxDepth = max(maxDepth, depth);
+	depth--;
+	return maxDepth;
+}
 int main()
 {
 	vector<string> a = { "1", "2", "3", "4", "5", "6","7" };
 	BinaryTree* test = new BinaryTree(a);
-
-
+	test->printIntire();
+	printf("%d", test->findMaxDepth(test->head));
 
 
 
