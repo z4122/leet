@@ -38,7 +38,22 @@ private:
 
 };
 
-
+void BinaryTree::printIntire()
+{
+	queue<TreeNode*> nodeQueue;
+	TreeNode* tempNode;
+	nodeQueue.push(head);
+	while (nodeQueue.empty() == 0)
+	{
+		tempNode = nodeQueue.front();
+		nodeQueue.pop();
+		printf("%d\t", tempNode->val);
+		if(tempNode->left!=NULL)
+			nodeQueue.push(tempNode->left);
+		if(tempNode->right!=NULL)
+			nodeQueue.push(tempNode->right);
+	}
+}
 BinaryTree::BinaryTree(vector<string>input)
 {
 	if (input.size() < 1)
