@@ -1,3 +1,5 @@
+//可以用string.split 和tolower
+
 class Solution {
 public:
     map<char,int>index;
