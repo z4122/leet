@@ -47,3 +47,41 @@ string temp = "- - - - - - - - - -";
 		}
 		printf("\n");
 	}
+	
+	
+	
+	string temp = "- - - - - - - - - -";
+	vector<string> coordinate(10, temp);
+	int iseven = 0;
+	int height = a[3] - a[1]-1;
+	int width = height;
+	if (width % 2 != 0)
+		iseven = 1;
+	pair<int, int> first(a[1], a[0]),second(a[3],a[2]);
+	
+	pair<int, int>third(a[1] + width, a[0] + height), forth(a[1] + width, a[0] + height);
+
+	pair<int, int> fifth(a[1] - width, a[0] + height), sixth(a[3] + width, a[2] + height);
+
+	if (iseven)
+		sixth.first += 1;
+	
+	pair<int, int>seventh((a[1]+a[3])/2,a[0]+2*height+3), eigth((a[1] + a[3]) / 2, a[0] + 2 * height + 3);
+
+	if (iseven)
+		eigth.first += 1;
+
+	printtran1(coordinate,first,third,forth);
+	printtran1(coordinate,second, fifth, sixth);
+
+	printtran2(coordinate,third, sixth, seventh);
+	printtran2(coordinate,third, sixth, eigth);
+	
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 19; j++)
+		{
+			printf("%c", coordinate[i][j]);
+		}
+		printf("\n");
+	}
