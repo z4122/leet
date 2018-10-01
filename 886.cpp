@@ -1,5 +1,8 @@
 886. Possible Bipartition
-//染色块问题
+
+染色块问题
+每个人都有自己讨厌的人，如何把人群分成没有讨厌关系的两组，采用染色块的解法。只有两种颜色，不断的染色，只要有冲突则不行
+
 
 Given a set of N people (numbered 1, 2, ..., N), we would like to split everyone into two groups of any size.
 
