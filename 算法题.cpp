@@ -31,7 +31,10 @@ int main(){
     }
     int sum = 0,start = 0;
     int xxor = 0;
+
+    //关键是算每个数字及之前的数字是否能异或为0，这样复杂度就变低了
     for(int i = 0;i<n;i++){
+        //如果有发现一个零，就以这个数字重新计数。
         if(num[i]==0){
             sum++;
             start=i+1;
@@ -51,3 +54,48 @@ int main(){
     cout<<sum;
     return 0;
 }
+
+
+八皇后问题
+class Solution {
+public:
+    //判断是否不冲突
+    bool available(vector<int> &index,int rowa,int rowb){
+        if(index[rowa]==index[rowb])
+            return false;
+        if(rowa-rowb==index[rowa]-index[rowb])
+            return false;
+        if(rowb-rowa==index[rowa]-index[rowb])
+            return false;
+        return true;
+    }
+    
+    //循环与已经填充的数组是否冲突
+    void recur(vector<int> &index,int n,int row,int &ret){
+        if(row==n){
+            ret++;
+            return;
+        }
+        for(int i = 0;i<n;i++){
+            index[row] = i;
+            for(int j = 0;j<row;j++){
+                if(available(index,j,row)==false)
+                    break;      
+                if(j==row-1)
+                    recur(index,n,row+1,ret);
+            }
+            index[row]=0;
+        }
+
+    }
+    
+    int totalNQueens(int n) {
+        vector<int> index(n,0);
+        int ret = 0;
+        for(int i = 0;i<n;i++){
+            index[0] = i;
+            recur(index,n,1,ret);
+        }
+        return ret;
+    }
+};
